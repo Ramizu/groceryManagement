@@ -2,7 +2,9 @@
 mini project, create grocery management system
 
 JAVA - 17
+
 Start XAMPP (Apache and MySQL)
+
 Check for 'spring.datasource.url' in application.properties. Make sure port is correct and database name exist
 
 If want to run spring boot by git bash, use this command:
