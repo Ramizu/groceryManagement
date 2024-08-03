@@ -18,6 +18,9 @@ public class Product {
     private String prod_name;
 
     @Column
+    private double prod_price;
+
+    @Column
     private boolean availability;
 
     @Column
@@ -42,6 +45,14 @@ public class Product {
 
     public void setProd_name(String prod_name) {
         this.prod_name = prod_name;
+    }
+
+    public double getProd_price() {
+        return prod_price;
+    }
+
+    public void setProd_price(double prod_price) {
+        this.prod_price = prod_price;
     }
 
     public boolean isAvailability() {
