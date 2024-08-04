@@ -2,6 +2,7 @@ package com.example.ManagementSystem.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.lang.NonNull;
 
 import java.util.Date;
 
@@ -12,21 +13,27 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @NonNull
     private Long prod_ID;
 
     @Column
+    @NonNull
     private String prod_name;
 
     @Column
+    @NonNull
     private double prod_price;
 
     @Column
-    private boolean availability;
+    @NonNull
+    private int availability;
 
     @Column
+    @NonNull
     private Long category_ID;
 
     @Temporal(TemporalType.DATE)
+    @NonNull
     private Date crt_dt_ts;
 
     public Product() {}
@@ -55,11 +62,11 @@ public class Product {
         this.prod_price = prod_price;
     }
 
-    public boolean isAvailability() {
+    public int getAvailability() {
         return availability;
     }
 
-    public void setAvailability(boolean availability) {
+    public void setAvailability(int availability) {
         this.availability = availability;
     }
 
