@@ -12,13 +12,13 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long category_id;
+    private Long categoryID;
 
     @Column
-    private String category_name;
+    private String categoryName;
 
     @Column
-    private String description;
+    private String categoryDesc;
 
     @Column
     @Temporal(TemporalType.DATE)
@@ -26,28 +26,28 @@ public class Category {
 
     public Category() {}
 
-    public Long getCategory_id() {
-        return category_id;
+    public Long getCategoryID() {
+        return categoryID;
     }
 
-    public void setCategory_id(Long category_id) {
-        this.category_id = category_id;
+    public void setCategoryID(Long categoryID) {
+        this.categoryID = categoryID;
     }
 
-    public String getCategory_name() {
-        return category_name;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setCategory_name(String category_name) {
-        this.category_name = category_name;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
-    public String getDescription() {
-        return description;
+    public String getCategoryDesc() {
+        return categoryDesc;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCategoryDesc(String categoryDesc) {
+        this.categoryDesc = categoryDesc;
     }
 
     public Date getCrt_dt_ts() {

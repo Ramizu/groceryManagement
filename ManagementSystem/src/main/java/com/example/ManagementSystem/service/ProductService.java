@@ -31,7 +31,7 @@ public class ProductService {
         return saveOrUpdateProduct(product);
     }
 
-    boolean updateProductPrice(Long prod_ID) {
+    public boolean updateProductPrice(Long prod_ID) {
         Product product = getProductById(prod_ID);
         product.setProd_price(10.00); // Retrieve from user input
 
@@ -40,7 +40,7 @@ public class ProductService {
 
     boolean updateProductAvailability(Long prod_ID) {
         Product product = getProductById(prod_ID);
-        product.setAvailability(true); // Retrieve from user input
+        product.setAvailability(1); // Retrieve from user input
 
         return saveOrUpdateProduct(product);
     }
@@ -54,7 +54,7 @@ public class ProductService {
         return false;
     }
 
-    boolean deleteUpdate(Long prod_ID) {
+    public boolean deleteProduct(Long prod_ID) {
         productRepository.deleteById(prod_ID);
 
         if(getProductById(prod_ID) == null)
