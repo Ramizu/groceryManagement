@@ -5,19 +5,16 @@ import lombok.Data;
 
 import java.util.Date;
 
-@Data
+
 @Entity
-@Table(name = "category")
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long categoryID;
 
-    @Column
-    private String categoryName;
 
-    @Column
+    private String categoryName;
     private String categoryDesc;
 
     @Column
@@ -57,6 +54,8 @@ public class Category {
     public void setCrt_dt_ts(Date crt_dt_ts) {
         this.crt_dt_ts = crt_dt_ts;
     }
+
+
 
     @PrePersist
     protected void onCreate() {

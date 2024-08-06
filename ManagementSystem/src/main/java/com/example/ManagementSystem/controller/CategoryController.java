@@ -16,7 +16,7 @@ public class CategoryController {
     @Autowired
     CategoryService categoryService;
 
-    @GetMapping
+    @GetMapping("/category")
     public List<Category> getAllCategories() {
         return categoryService.getAllCategories();
     }
@@ -26,7 +26,7 @@ public class CategoryController {
         return categoryService.getCategoryById(id);
     }
 
-    @PostMapping
+    @PostMapping("/updateCategoryName/{prod_ID}")
     public Category createCategory(@RequestBody Category category) {
         return categoryService.addCategory(category);
     }
