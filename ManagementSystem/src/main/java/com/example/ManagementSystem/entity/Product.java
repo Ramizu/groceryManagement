@@ -34,7 +34,7 @@ public class Product {
 
     @Temporal(TemporalType.DATE)
     @NonNull
-    private Date crt_dt_ts;
+    private Date created_date;
 
     public Product() {}
 
@@ -78,16 +78,16 @@ public class Product {
         this.category_ID = category_ID;
     }
 
-    public Date getCrt_dt_ts() {
-        return crt_dt_ts;
+    public Date getCreated_date() {
+        return created_date;
     }
 
-    public void setCrt_dt_ts(Date crt_dt_ts) {
-        this.crt_dt_ts = crt_dt_ts;
+    public void setCreated_date(Date created_date) {
+        this.created_date = created_date;
     }
 
     @PrePersist
     protected void onCreate() {
-        crt_dt_ts = new Date();
+        created_date = new Date();
     }
 }

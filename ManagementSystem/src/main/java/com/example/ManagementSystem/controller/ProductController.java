@@ -19,9 +19,9 @@ public class ProductController {
 
     @GetMapping("/products")
     public String viewAllProducts(Model model, @ModelAttribute("message") String message) {
-        model.addAttribute("list", productService.getAllProducts());
+        model.addAttribute("products", productService.getAllProducts());
         model.addAttribute("message", message);
-        return "products";
+        return "/products";
     }
 
     @PostMapping("/updateProductName/{prod_ID}")

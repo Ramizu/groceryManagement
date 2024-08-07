@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/ManagementSystem/ManagementSystem.iml" filepath="$PROJECT_DIR$/ManagementSystem/ManagementSystem.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/groceryManagement.iml" filepath="$PROJECT_DIR$/.idea/groceryManagement.iml" />
     </modules>
   </component>
