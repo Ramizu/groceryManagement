@@ -59,13 +59,13 @@ public class ProductController {
         return "redirect:/product-add";
     }
 
-    @GetMapping("/editProduct/{prod_ID}")
+    @GetMapping("/product-edit?id={prod_ID}")
     public String editProduct(@PathVariable Long prod_ID, Model model) {
         model.addAttribute("product", productService.getProductById(prod_ID));
-        return "EditProduct";
+        return "/product-edit?id=" + prod_ID;
     }
 
-    @PostMapping("/editSaveProduct")
+    @PostMapping("/product-edit?id={prod_ID}")
     public String editSaveProduct(Product product, RedirectAttributes redirectAttributes) {
         if (productService.saveOrUpdateProduct(product)) {
             redirectAttributes.addFlashAttribute("message", "Successfully edited!");
@@ -73,7 +73,7 @@ public class ProductController {
         }
 
         redirectAttributes.addFlashAttribute("message", "Failed to edit!");
-        return "redirect:/editProduct/" + product.getProd_ID();
+        return "redirect:/product-edit?id=" + product.getProd_ID();
     }
 
     @GetMapping("/deleteProduct/{prod_ID}")
