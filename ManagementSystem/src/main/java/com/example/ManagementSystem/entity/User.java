@@ -14,7 +14,9 @@ public class User {
     private Integer uid;
     private String user_name;
     private String user_pswd;
-    private String user_role;
+    private String is_admin;
+    private String email;
+    private String phone_num;
 
     @Temporal(TemporalType.DATE)
     private Date crt_dt_ts;
