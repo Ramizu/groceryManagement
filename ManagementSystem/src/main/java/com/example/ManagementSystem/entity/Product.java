@@ -12,7 +12,7 @@ import java.util.Date;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NonNull
     private Long prod_ID;
 
@@ -28,8 +28,9 @@ public class Product {
     @NonNull
     private int availability;
 
-    @Column
-    @NonNull
+    @ManyToOne
+    @JoinColumn(name = "category_id", insertable=false, updatable=false)
+    private Category category ;
     private Long category_ID;
 
     @Temporal(TemporalType.DATE)

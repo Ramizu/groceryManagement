@@ -557,6 +557,7 @@
                                 <th scope="col">No.</th>
                                 <th scope="col">Product Name</th>
                                 <th scope="col">Price (RM)</th>
+                                <th scope="col">Category</th>
                                 <th scope="col">Availability</th>
                                 <th scope="col">Created Date</th>
                                 <th scope="col">Action</th>
@@ -564,9 +565,10 @@
                             </thead>
                             <tbody>
                             <tr th:each="product : ${products}">
-                                <th th:text="${productStat.count}" scope="row">1</th>
+                                <th th:text="${productStat.count}" scope="row"></th>
                                 <td th:text="${product.prod_name}"></td>
                                 <td th:text="${product.prod_price}"></td>
+                                <td th:text="${product.category.category_name}"></td>
                                 <td th:text="${product.availability}"></td>
                                 <td th:text="${product.created_date}"></td>
                                 <td>
