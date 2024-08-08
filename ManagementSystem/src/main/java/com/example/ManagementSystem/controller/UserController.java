@@ -77,6 +77,7 @@ public class UserController {
             userDto.setIs_admin(user.getIs_admin());
             userDto.setEmail(user.getEmail());
             userDto.setPhone_num(user.getPhone_num());
+            System.out.println("req pass: "+user.getUser_pswd());
 
             model.addAttribute("userDTO", userDto);
         }catch (Exception e){
@@ -93,8 +94,10 @@ public class UserController {
         try{
             User user = userService.getById(id);
             model.addAttribute("user", user);
+            System.out.println("passwrod: "+userDTO.getUser_pswd());
 
             if(result.hasErrors()){
+                System.out.println("edit result has error!");
                 return "user-edit";
             }
 
