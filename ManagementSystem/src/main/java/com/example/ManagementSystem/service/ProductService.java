@@ -24,23 +24,12 @@ public class ProductService {
         return productRepository.findById(prod_ID).get();
     }
 
-    public boolean updateProductName(Long prod_ID) {
+    public boolean updateProduct(Long prod_ID) {
         Product product = getProductById(prod_ID);
-        product.setProd_name("Name"); // Retrieve from user input
-
-        return saveOrUpdateProduct(product);
-    }
-
-    public boolean updateProductPrice(Long prod_ID) {
-        Product product = getProductById(prod_ID);
-        product.setProd_price(10.00); // Retrieve from user input
-
-        return saveOrUpdateProduct(product);
-    }
-
-    boolean updateProductAvailability(Long prod_ID) {
-        Product product = getProductById(prod_ID);
-        product.setAvailability(1); // Retrieve from user input
+        product.setProd_name(product.getProd_name());
+        product.setProd_price(product.getProd_price());
+        product.setAvailability(product.getAvailability());
+        product.setCategory_ID(product.getCategory_ID());
 
         return saveOrUpdateProduct(product);
     }

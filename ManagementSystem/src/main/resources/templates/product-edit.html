@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Add Product - Grocery Management System</title>
+    <title>Edit Product - Grocery Management System</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -44,7 +44,7 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-        <a href="index.html" class="logo d-flex align-items-center">
+        <a href="/index" class="logo d-flex align-items-center">
             <img src="/assets/img/logo.png" alt="">
             <span class="d-none d-lg-block">NiceAdmin</span>
         </a>
@@ -275,14 +275,14 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="index.html">
+            <a class="nav-link collapsed" href="/index">
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
             </a>
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="products.html">
+            <a class="nav-link collapsed" href="/products">
                 <i class="bi bi-layout-text-window-reverse"></i>
                 <span>Products</span>
             </a>
@@ -516,15 +516,26 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Add Product</h1>
+        <h1>Edit Product</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item"><a href="products.html">Products</a></li>
-                <li class="breadcrumb-item active">Add Product</li>
+                <li class="breadcrumb-item"><a href="/index">Home</a></li>
+                <li class="breadcrumb-item"><a href="/products">Products</a></li>
+                <li class="breadcrumb-item active">Edit Product</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
+
+    <div class="alert alert-success alert-dismissible fade show" id="success-alert" role="alert" style="display: none">
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <div class="alert alert-danger alert-dismissible fade show" id="danger-alert" role="alert" style="display: none">
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
     <section class="section">
         <div class="row">
 
@@ -532,27 +543,28 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Enter Product Details</h5>
+                        <h5 class="card-title">Edit Product Details</h5>
 
                         <!-- Vertical Form -->
-                        <form class="row g-3">
+                        <form class="row g-3" method="post" th:object="${product}" action="/updateProduct">
+                            <input th:field="${product.prod_ID}" type="hidden"/>
                             <div class="col-12">
-                                <label for="inputNanme4" class="form-label">Product Name</label>
-                                <input type="text" class="form-control" id="inputNanme4" required="required">
+                                <label for="prod_name" class="form-label">Product Name</label>
+                                <input type="text" class="form-control" id="prod_name" th:field="${product.prod_name}" required="required">
                             </div>
                             <div class="col-12">
-                                <label for="inputPrice" class="form-label">Price (RM)</label>
-                                <input type="number" class="form-control" id="inputPrice" min="0" value="0" step=".01">
+                                <label for="prod_price" class="form-label">Price (RM)</label>
+                                <input type="number" class="form-control" id="prod_price" th:field="${product.prod_price}" min="0" value="0" step=".01">
                             </div>
                             <div class="col-12">
-                                <label for="inputAvailability" class="col-sm-2 col-form-label">Availability</label>
-                                <input type="number" class="form-control" id="inputAvailability" min="0" value="0">
+                                <label for="availability" class="col-sm-2 col-form-label">Availability</label>
+                                <input type="number" class="form-control" id="availability" th:field="${product.availability}" min="0" value="0">
                             </div>
                             <div class="col-12">
                                 <label class="col-sm-2 col-form-label">Category</label>
                                 <div class="col-sm-12">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option selected></option>
+                                    <select class="form-select" id="category_ID" th:field="${product.category_ID}">
+                                        <option value="" selected >Select Category</option>
                                         <option value="1">Food</option>
                                         <option value="2">Beverage</option>
                                         <option value="3">Electronic</option>
@@ -560,7 +572,8 @@
                                 </div>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary">Add</button>
+<!--                                <a th:href="@{/updateProduct(prod_ID=${product.prod_ID})}" style="color:white" class="btn btn-primary">Update</a>-->
+                                <button type="submit" class="btn btn-primary">Update</button>
                                 <button type="reset" class="btn btn-secondary">Reset</button>
                             </div>
                         </form><!-- Vertical Form -->
@@ -601,6 +614,26 @@
 
 <!-- Template Main JS File -->
 <script src="/assets/js/main.js"></script>
+
+<script th:inline="javascript">
+    window.onload = function() {
+        var msg = "${message}";
+        if (msg == "Successfully saved!" || msg == "Successfully edited!" || msg == "Successfully deleted!") {
+            document.getElementById("success-alert").style = "display: block";
+            document.getElementById("success-alert").innerHTML = msg;
+            document.getElementById("danger-alert").style = "display: none";
+        }
+        else if (msg == "Failed to save!" || msg == "Failed to edit!" || msg == "Failed to delete!") {
+            document.getElementById("success-alert").style = "display: none";
+            document.getElementById("danger-alert").style = "display: block";
+            document.getElementById("danger-alert").innerHTML = msg;
+        }
+        else {
+            document.getElementById("success-alert").style = "display: none";
+            document.getElementById("danger-alert").style = "display: none";
+        }
+    }
+</script>
 
 </body>
 
