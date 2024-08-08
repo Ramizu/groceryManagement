@@ -573,7 +573,7 @@
                                 <td th:text="${product.created_date}"></td>
                                 <td>
                                     <a th:href="@{/product-edit(prod_ID=${product.prod_ID})}" style="color:white" class="btn btn-secondary"><i class="bi bi-pencil-square"></i></a>
-                                    <button type="button" class="btn btn-danger"><a th:href="@{/deleteProduct(prod_ID=${product.prod_ID})}" style="color:white"><i class="bi bi-trash"></i></a></button>
+                                    <a th:href="@{/deleteProduct(prod_ID=${product.prod_ID})}" style="color:white" class="btn btn-danger"><i class="bi bi-trash"></i></a>
                                 </td>
                             </tr>
                             </tbody>
@@ -589,7 +589,7 @@
 
     <script th:inline="javascript">
         window.onload = function() {
-            var msg = "${message}";
+            var msg = [[${message}]];
             if (msg == "Successfully saved!" || msg == "Successfully edited!" || msg == "Successfully deleted!") {
                 document.getElementById("success-alert").style.display = "block";
                 document.getElementById("success-alert").innerHTML = msg;

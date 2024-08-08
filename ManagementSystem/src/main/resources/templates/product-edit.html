@@ -547,7 +547,7 @@
 
                         <!-- Vertical Form -->
                         <form class="row g-3" method="post" th:object="${product}" action="/updateProduct">
-                            <input th:field="${product.prod_ID}" type="hidden"/>
+                            <input id="prod_ID" th:field="${product.prod_ID}" type="hidden"/>
                             <div class="col-12">
                                 <label for="prod_name" class="form-label">Product Name</label>
                                 <input type="text" class="form-control" id="prod_name" th:field="${product.prod_name}" required="required">
@@ -617,7 +617,7 @@
 
 <script th:inline="javascript">
     window.onload = function() {
-        var msg = "${message}";
+        var msg = [[${message}]];
         if (msg == "Successfully saved!" || msg == "Successfully edited!" || msg == "Successfully deleted!") {
             document.getElementById("success-alert").style = "display: block";
             document.getElementById("success-alert").innerHTML = msg;

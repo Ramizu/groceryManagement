@@ -3,6 +3,7 @@ package com.example.ManagementSystem.controller;
 import com.example.ManagementSystem.entity.Product;
 import com.example.ManagementSystem.service.CategoryService;
 import com.example.ManagementSystem.service.ProductService;
+import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
