@@ -3,6 +3,7 @@ package com.example.ManagementSystem.service;
 import com.example.ManagementSystem.entity.Product;
 import com.example.ManagementSystem.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -46,9 +47,6 @@ public class ProductService {
     public boolean deleteProduct(Long prod_ID) {
         productRepository.deleteById(prod_ID);
 
-        if(getProductById(prod_ID) == null)
-            return true;
-
-        return false;
+        return true;
     }
 }

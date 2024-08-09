@@ -561,11 +561,7 @@
                                 <label class="col-sm-2 col-form-label">Category</label>
                                 <div class="col-sm-12">
                                     <select class="form-select" id="category_ID" th:field="${product.category_ID}">
-<!--                                        <option value="" selected >Select Category</option>-->
                                         <option th:each="category: ${categories}" th:value="${category.category_id}" th:text="${category.category_name}"></option>
-<!--                                        <option th:text="${category.category_name}" th:value="${category.categoryID}"></option>-->
-<!--                                        <option value="2">Beverage</option>-->
-<!--                                        <option value="3">Electronic</option>-->
                                     </select>
                                 </div>
                             </div>
@@ -614,7 +610,7 @@
 
 <script th:inline="javascript">
     window.onload = function() {
-        var msg = "${message}";
+        var msg = [[${message}]];
         if (msg == "Successfully saved!" || msg == "Successfully edited!" || msg == "Successfully deleted!") {
             document.getElementById("success-alert").style = "display: block";
             document.getElementById("success-alert").innerHTML = msg;

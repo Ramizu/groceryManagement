@@ -77,6 +77,7 @@ public class ProductController {
     public String deleteProduct(@RequestParam Long prod_ID, RedirectAttributes redirectAttributes) {
         if (productService.deleteProduct(prod_ID)) {
             redirectAttributes.addFlashAttribute("message", "Successfully deleted!");
+            return "redirect:/products";
         }
 
         redirectAttributes.addFlashAttribute("message", "Failed to delete!");

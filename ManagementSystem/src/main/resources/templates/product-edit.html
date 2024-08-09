@@ -527,7 +527,6 @@
     </div><!-- End Page Title -->
 
     <div class="alert alert-success alert-dismissible fade show" id="success-alert" role="alert" style="display: none">
-        ${message}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 
@@ -550,7 +549,7 @@
                             <input id="prod_ID" th:field="${product.prod_ID}" type="hidden"/>
                             <div class="col-12">
                                 <label for="prod_name" class="form-label">Product Name</label>
-                                <input type="text" class="form-control" id="prod_name" th:field="${product.prod_name}" required="required">
+                                <input type="text" class="form-control" id="prod_name" th:value="${product.prod_name}" th:field="${product.prod_name}" required="required">
                             </div>
                             <div class="col-12">
                                 <label for="prod_price" class="form-label">Price (RM)</label>
@@ -564,10 +563,7 @@
                                 <label class="col-sm-2 col-form-label">Category</label>
                                 <div class="col-sm-12">
                                     <select class="form-select" id="category_ID" th:field="${product.category_ID}">
-                                        <option value="" selected >Select Category</option>
-                                        <option value="1">Food</option>
-                                        <option value="2">Beverage</option>
-                                        <option value="3">Electronic</option>
+                                        <option th:each="category: ${categories}" th:value="${category.category_id}" th:text="${category.category_name}"></option>
                                     </select>
                                 </div>
                             </div>
