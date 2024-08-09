@@ -567,7 +567,7 @@
                             <tr th:each="product : ${products}">
                                 <th th:text="${productStat.count}" scope="row"></th>
                                 <td th:text="${product.prod_name}"></td>
-                                <td th:text="${product.prod_price}"></td>
+                                <td id="price" th:text="${product.prod_price}"></td>
                                 <td th:text="${product.category.category_name}"></td>
                                 <td th:text="${product.availability}"></td>
                                 <td th:text="${product.created_date}"></td>
@@ -590,12 +590,12 @@
     <script th:inline="javascript">
         window.onload = function() {
             var msg = [[${message}]];
-            if (msg == "Successfully saved!" || msg == "Successfully edited!" || msg == "Successfully deleted!") {
+            if (msg == "Successfully saved!" || msg == "Successfully updated!" || msg == "Successfully deleted!") {
                 document.getElementById("success-alert").style.display = "block";
                 document.getElementById("success-alert").innerHTML = msg;
                 document.getElementById("danger-alert").style.display = "none";
             }
-            else if (msg == "Failed to save!" || msg == "Failed to edit!" || msg == "Failed to delete!") {
+            else if (msg == "Failed to save!" || msg == "Failed to update!" || msg == "Failed to delete!") {
                 document.getElementById("success-alert").style.display = "none";
                 document.getElementById("danger-alert").style.display = "block";
                 document.getElementById("danger-alert").innerHTML = msg;
@@ -604,6 +604,9 @@
                 document.getElementById("success-alert").style.display = "none";
                 document.getElementById("danger-alert").style.display = "none";
             }
+
+            var price = document.getElementById("price").innerHTML;
+            document.getElementById("price").innerHTML = price.toFixed(2);
         }
     </script>
 
