@@ -1,10 +1,12 @@
 package com.example.ManagementSystem.service;
 
 import com.example.ManagementSystem.entity.Category;
+import com.example.ManagementSystem.entity.CategoryDTO;
 import com.example.ManagementSystem.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,7 +33,7 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public String addCategory(Category category) {
-        categoryRepository.save(category);  //add
+        categoryRepository.save(category);  //add & update
         return "Success";
     }
 
@@ -55,6 +57,7 @@ public class CategoryServiceImpl implements CategoryService{
         }
 
     }
+
 
 
 }

@@ -51,4 +51,11 @@ public class ProductService {
 
         return false;
     }
+
+
+    public void updateProduct(Product product) {
+        // Save the product entity to the database
+        productRepository.save(product);
+    }
+
 }

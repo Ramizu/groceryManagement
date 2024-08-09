@@ -1,20 +1,18 @@
 package com.example.ManagementSystem.controller;
 
 import com.example.ManagementSystem.entity.User;
+
 import com.example.ManagementSystem.entity.UserDTO;
 import com.example.ManagementSystem.service.UserService;
-import jakarta.validation.Valid;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Slf4j
@@ -56,5 +54,11 @@ public class IndexController {
     @GetMapping("/dashboard")
     public String dashboard(){
         return "dashboard";
+    }
+
+    @RequestMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate(); // Example: Invalidate the session
+        return "redirect:/pages-login.html";
     }
 }

@@ -562,14 +562,17 @@
                         <table class="table table-striped datatable" style="vertical-align: middle">
                             <thead>
                             <tr>
+                                <th scope="col">No.</th>
                                 <th scope="col">Category Name</th>
                                 <th scope="col">Description</th>
                                 <th scope="col">Creation Date</th>
+                                <th scope="col">Action</th>
 
                             </tr>
                             </thead>
                             <tbody>
                             <tr th:each="category : ${categories}">
+                                <th th:text = "${categoryStat.count}" scope="row">1</th>
                                 <td th:text = "${category.category_name}"></td>
                                 <td th:text = "${category.category_desc}"></td>
                                 <td th:text = "${category.crt_dt_ts.toString().substring(0, 10)}"></td>

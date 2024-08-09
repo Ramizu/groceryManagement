@@ -36,6 +36,8 @@ public class Product {
     @NonNull
     private Date created_date;
 
+
+
     public Product() {}
 
     public Long getProd_ID() {
@@ -70,24 +72,22 @@ public class Product {
         this.availability = availability;
     }
 
-    public Long getCategory_ID() {
-        return category_ID;
-    }
 
-    public void setCategory_ID(Long category_ID) {
-        this.category_ID = category_ID;
-    }
-
+    @NonNull
     public Date getCreated_date() {
         return created_date;
     }
 
-    public void setCreated_date(Date created_date) {
+    public void setCreated_date(@NonNull Date created_date) {
         this.created_date = created_date;
     }
+
+
 
     @PrePersist
     protected void onCreate() {
         created_date = new Date();
     }
+
+
 }

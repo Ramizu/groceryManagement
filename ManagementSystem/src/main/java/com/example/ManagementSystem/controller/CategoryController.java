@@ -4,7 +4,6 @@ package com.example.ManagementSystem.controller;
 import com.example.ManagementSystem.entity.Category;
 import com.example.ManagementSystem.entity.CategoryDTO;
 import com.example.ManagementSystem.entity.User;
-import com.example.ManagementSystem.entity.UserDTO;
 import com.example.ManagementSystem.service.CategoryService;
 import com.example.ManagementSystem.service.CategoryServiceImpl;
 import com.example.ManagementSystem.service.ProductService;
@@ -98,7 +97,7 @@ public class CategoryController {
         }catch (Exception e){
             System.out.println("Exception: "+ e.getMessage());
         }
-        return "redirect:/user";
+        return "redirect:/category";
     }
 
     @GetMapping("/deleteCategory")
