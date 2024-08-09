@@ -28,11 +28,6 @@ public class IndexController {
 //        return "index";
 //    }
 
-    @GetMapping({"/users-profile", "/users-profile.html"})
-    public String userProfile(){
-        return "users-profile";
-    }
-
     @GetMapping({"", "/"})
     public String showlogin(Model model){
         UserDTO userDto = new UserDTO();
@@ -43,18 +38,72 @@ public class IndexController {
     @PostMapping({"", "/"})
     public String checklogin(@ModelAttribute UserDTO userDTO, Model model){
         User user = new User();
-        user.setUser_name(userDTO.getUser_name());
-        user.setUser_pswd(userDTO.getUser_pswd());
         user = userService.findByEmail(userDTO.getEmail());
-        if(userDTO.getEmail().equals(user.getEmail()) && userDTO.getUser_pswd().equals(user.getUser_pswd())){
-            model.addAttribute("user", user);
-            return "dashboard";
+        if(null != user) {
+            if (userDTO.getEmail().equals(user.getEmail()) && userDTO.getUser_pswd().equals(user.getUser_pswd())) {
+                model.addAttribute("user", user);
+                if(user.getIs_admin().equalsIgnoreCase("Y"))
+                    return "dashboard";
+                else
+                    return "dashboard-staff";
+            }
         }
+        model.addAttribute("errorMessage", "Invalid email or password. Please try again.");
         return "pages-login";
     }
 
     @GetMapping("/dashboard")
     public String dashboard(){
         return "dashboard";
+    }
+
+    @GetMapping({"/users-profile", "/users-profile.html"})
+    public String userProfile(@RequestParam(name = "userValue", required = false) String uid,Model model, @RequestParam(required = false) String id){
+
+//        UserDTO userDto = new UserDTO();
+        try {
+            User user = new User();
+            if(null != id){
+                int newID = Integer.parseInt(id);
+                user = userService.getById(newID);
+            }else if(null != uid){
+                int newID = Integer.parseInt(uid);
+                user = userService.getById(newID);
+            }
+            model.addAttribute("userDTO", user);
+        }catch (Exception e){
+            System.out.println("Exception: "+ e.getMessage());
+            return "users-profile";
+        }
+        return "users-profile";
+    }
+
+    @PostMapping("/users-profile")
+    public String updateUser(Model model, @ModelAttribute UserDTO userDTO, BindingResult result) { //to update user info
+
+        int userid = 0;
+        try {
+            User user = userService.findByEmail(userDTO.getEmail());
+            model.addAttribute("user", user);
+
+//            if(result.hasErrors()){
+//                System.out.println("edit result has error!");
+//                return "user-edit";
+//            }
+
+            user.setUser_name(userDTO.getUser_name());
+//            user.setUser_pswd(userDTO.getUser_pswd());
+//            user.setIs_admin(userDTO.getIs_admin());
+            user.setEmail(userDTO.getEmail());
+            user.setPhone_num(userDTO.getPhone_num());
+
+            userService.upsert(user);
+            model.addAttribute("userDTO", user);
+            userid = user.getUid();
+
+        } catch (Exception e) {
+            System.out.println("Exception: " + e.getMessage());
+        }
+        return "redirect:/users-profile?userValue=" + userid;
     }
 }
