@@ -630,13 +630,13 @@
 
     <script th:inline="javascript">
         window.onload = function() {
-            var msg = "${message}";
-            if (msg == "Successfully saved!" || msg == "Successfully edited!" || msg == "Successfully deleted!") {
+            var msg = [[${message}]];
+            if (msg == "Successfully saved!" || msg == "Successfully updated!" || msg == "Successfully deleted!") {
                 document.getElementById("success-alert").style.display = "block";
                 document.getElementById("success-alert").innerHTML = msg;
                 document.getElementById("danger-alert").style.display = "none";
             }
-            else if (msg == "Failed to save!" || msg == "Failed to edit!" || msg == "Failed to delete!") {
+            else if (msg == "Failed to save!" || msg == "Failed to update!" || msg == "Failed to delete!") {
                 document.getElementById("success-alert").style.display = "none";
                 document.getElementById("danger-alert").style.display = "block";
                 document.getElementById("danger-alert").innerHTML = msg;

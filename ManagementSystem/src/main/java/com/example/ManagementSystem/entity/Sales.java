@@ -13,7 +13,6 @@ public class Sales {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NonNull
     private int salesid;
-    private int uid; // User ID from User table
     private Long prodId; // Product ID from Product table
     private String prodName; // Product Name
     private int availability; // Availability from Product table
@@ -24,8 +23,7 @@ public class Sales {
     }
 
     // Parameterized constructor
-    public Sales(int uid, Long prodId, String prodName, int availability, double prodPrice) {
-        this.uid = uid;
+    public Sales(Long prodId, String prodName, int availability, double prodPrice) {
         this.prodId = prodId;
         this.prodName = prodName;
         this.availability = availability;
@@ -33,14 +31,6 @@ public class Sales {
     }
 
     // Getters and Setters
-
-    public int getUid() {
-        return uid;
-    }
-
-    public void setUid(int uid) {
-        this.uid = uid;
-    }
 
     public Long getProdId() {
         return prodId;

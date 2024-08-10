@@ -23,7 +23,7 @@ public class CategoryController {
     @Autowired
     private CategoryServiceImpl categoryService;
 
-    @GetMapping({"", "/"})
+    @GetMapping({"/", ""})
     public String displayCategoryList(Model model){ //to show list of category page
         List<Category> categories = categoryService.getAllCategories();
         model.addAttribute("categories", categories);

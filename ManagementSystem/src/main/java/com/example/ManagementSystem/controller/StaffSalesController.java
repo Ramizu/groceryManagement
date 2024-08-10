@@ -66,13 +66,13 @@ public class StaffSalesController {
 
         if (product == null) {
             model.addAttribute("errorMessage", "Product not found.");
-            return "sales-product/updateProduct";
+            return "salesEditProduct";
         }
 
         if (newAvailability > product.getAvailability()) {
             model.addAttribute("errorMessage", "Entered quantity exceeds available stock.");
             model.addAttribute("product", product);
-            return "sales-product/updateProduct";
+            return "salesEditProduct";
         } else {
             products.setAvailability(product.getAvailability() - newAvailability);
             productService.saveOrUpdateProduct(products);

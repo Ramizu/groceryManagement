@@ -42,14 +42,13 @@ public class SalesController {
     }
 
     @PostMapping("/addSales")
-    public String addSales(@RequestParam Integer uid,
-                           @RequestParam Long prodId,
+    public String addSales(@RequestParam Long prodId,
                            @RequestParam String prodName,
                            @RequestParam int availability,
                            @RequestParam double prodPrice,
                            Model model) {
         // Create a new Sales object
-        Sales sales = new Sales(uid, prodId, prodName, availability, prodPrice);
+        Sales sales = new Sales(prodId, prodName, availability, prodPrice);
 
         // Save the Sales object using the SalesService
         salesService.addSales(sales);

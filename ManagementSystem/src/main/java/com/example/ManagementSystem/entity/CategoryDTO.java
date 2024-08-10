@@ -14,7 +14,7 @@ public class CategoryDTO {
     @NotEmpty(message = "The name is required")
     private String category_name;
 
-    @NotEmpty(message = "The password is required")
+    @NotEmpty(message = "The description is required")
     private String category_desc;
 
     private Date crt_dt_ts;

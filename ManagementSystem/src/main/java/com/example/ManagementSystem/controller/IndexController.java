@@ -85,7 +85,7 @@ public class IndexController {
         return "users-profile";
     }
 
-    @PostMapping("/users-profile")
+    @PostMapping({"/users-profile", "/users-profile.html"})
     public String updateUser(Model model, @ModelAttribute UserDTO userDTO, BindingResult result) { //to update user info
 
         int userid = 0;

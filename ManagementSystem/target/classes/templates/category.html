@@ -563,17 +563,6 @@
         </nav>
     </div><!-- End Page Title -->
 
-
-    <div class="alert alert-success alert-dismissible fade show" role="alert" style="display: block">
-        A simple success alert—check it out!
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-
-    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="display: none">
-        A simple danger alert—check it out!
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-
     <section class="section">
         <div class="row">
             <div class="col-lg-12">
@@ -610,9 +599,9 @@
                                 <td th:text = "${category.crt_dt_ts.toString().substring(0, 10)}"></td>
                                 <td style="white-space:nowrap">
                                     <a class="btn btn-secondary bi bi-pencil-square"
-                                       th:href="@{/category/updateCategory (id=${category.categoryid})}"></a>
+                                       th:href="@{/category/updateCategory (id=${category.category_id})}"></a>
                                     <a class="btn btn-danger bi bi-trash"
-                                       th:href="@{/category/deleteCategory (id=${category.categoryid})}"
+                                       th:href="@{/category/deleteCategory (id=${category.category_id})}"
                                        onclick="return confirm('Are you sure?')"></a>
                                 </td>
                             </tr>
