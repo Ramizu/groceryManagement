@@ -7,18 +7,16 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "category")
+@Table(name = "CATEGORY")
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long category_id;
 
-    @Column
-    private String category_name;
 
-    @Column
-    private String description;
+    private String category_name;
+    private String category_desc;
 
     @Column
     @Temporal(TemporalType.DATE)
@@ -42,12 +40,12 @@ public class Category {
         this.category_name = category_name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getCategory_desc() {
+        return category_desc;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCategory_desc(String category_desc) {
+        this.category_desc = category_desc;
     }
 
     public Date getCrt_dt_ts() {

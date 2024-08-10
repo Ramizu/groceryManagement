@@ -251,7 +251,7 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2" ></span>
+            <span class="d-none d-md-block dropdown-toggle ps-2" id="username"></span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -321,7 +321,7 @@
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="/product">
+        <a class="nav-link collapsed" href="/products">
           <i class="bi bi-grid"></i>
           <span>Product</span>
         </a>
@@ -1237,6 +1237,8 @@
   <script src="/assets/js/main.js"></script>
   <script>
     var usernameElement = document.getElementById('username');
+    username = localStorage.getItem('username');
+    console.log(username);
     if (username) {
     // Update the content of the HTML element
         usernameElement.textContent = username;

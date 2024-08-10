@@ -39,6 +39,7 @@ public class IndexController {
     public String checklogin(@ModelAttribute UserDTO userDTO, Model model){
         User user = new User();
         user = userService.findByEmail(userDTO.getEmail());
+        System.out.println(user);
         if(null != user) {
             if (userDTO.getEmail().equals(user.getEmail()) && userDTO.getUser_pswd().equals(user.getUser_pswd())) {
                 model.addAttribute("user", user);
@@ -67,6 +68,7 @@ public class IndexController {
 
 //        UserDTO userDto = new UserDTO();
         try {
+            System.out.println("uid, id : "+uid+", "+id);
             User user = new User();
             if(null != id){
                 int newID = Integer.parseInt(id);
