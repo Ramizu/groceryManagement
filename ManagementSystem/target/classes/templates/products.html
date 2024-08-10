@@ -231,7 +231,7 @@
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <h6 name="username"></h6>
+                        <h6 class="username"></h6>
                         <span>Web Designer</span>
                     </li>
                     <li>
@@ -295,7 +295,7 @@
             </a>
         </li><!-- End Dashboard Nav -->
 
-        <li class="nav-item">
+        <li class="nav-item admin-item">
             <a class="nav-link" href="/products">
                 <i class="bi bi-layout-text-window-reverse"></i>
                 <span>Products</span>
@@ -481,7 +481,7 @@
             </a>
         </li><!-- End Profile Page Nav -->
 
-        <li class="nav-item">
+        <li class="nav-item admin-item">
             <a class="nav-link" href="/user">
                 <i class="bi bi-layout-text-window-reverse"></i>
                 <span>Users</span>
@@ -509,19 +509,13 @@
 <!--            </a>-->
 <!--        </li>&lt;!&ndash; End Register Page Nav &ndash;&gt;-->
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="user">
-                <i class="bi bi-card-list"></i>
-                <span>Users</span>
-            </a>
-        </li><!-- End Staff Page Nav -->
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-login.html">
-                <i class="bi bi-box-arrow-in-right"></i>
-                <span>Login</span>
-            </a>
-        </li><!-- End Login Page Nav -->
+<!--        <li class="nav-item">-->
+<!--            <a class="nav-link collapsed" href="pages-login.html">-->
+<!--                <i class="bi bi-box-arrow-in-right"></i>-->
+<!--                <span>Login</span>-->
+<!--            </a>-->
+<!--        </li>&lt;!&ndash; End Login Page Nav &ndash;&gt;-->
 
 <!--        <li class="nav-item">-->
 <!--            <a class="nav-link collapsed" href="pages-error-404.html">-->
@@ -667,7 +661,7 @@
 <script src="/assets/js/main.js"></script>
 <script>
     var usernameElement = document.getElementById('username');
-    var userbyname = document.getElementsByName('username');
+    var userbyname = document.getElementsByClassName('username');
     if (username) {
     // Update the content of the HTML element
         usernameElement.textContent = username;
@@ -676,6 +670,33 @@
         // If no value is found in localStorage, you can set a default value or handle it appropriately
         usernameElement.textContent = 'Guest';
     }
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+            // Retrieve the roles from localStorage
+            const isAdmin = localStorage.getItem('isadmin'); // Assumes 'Y' or 'N'
+
+            // Function to show/hide elements based on their class name
+            function showHideElementsByClass(className, shouldShow) {
+                const elements = document.querySelectorAll(`.${className}`);
+                elements.forEach(item => {
+                    item.style.display = shouldShow ? 'block' : 'none';
+                });
+            }
+
+            // Hide all items initially
+            showHideElementsByClass('admin-item', false);
+            showHideElementsByClass('staff-item', false);
+
+            // Show items based on roles
+            if (isAdmin == 'Y') {
+                showHideElementsByClass('admin-item', true);
+            }
+
+            if (isAdmin == 'N') {
+                showHideElementsByClass('staff-item', true);
+            }
+        });
 </script>
 
 </body>

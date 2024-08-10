@@ -295,7 +295,7 @@
             </a>
         </li><!-- End Dashboard Nav -->
 
-        <li class="nav-item">
+        <li class="nav-item admin-item">
             <a class="nav-link collapsed" href="/products">
                 <i class="bi bi-layout-text-window-reverse"></i>
                 <span>Products</span>
@@ -495,7 +495,7 @@
             </a>
         </li><!-- End Contact Page Nav -->
 
-        <li class="nav-item">
+        <li class="nav-item admin-item">
             <a class="nav-link collapsed" href="user">
                 <i class="bi bi-card-list"></i>
                 <span>Users</span>
@@ -696,6 +696,33 @@
         // If no value is found in localStorage, you can set a default value or handle it appropriately
         usernameElement.textContent = 'Guest';
     }
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+            // Retrieve the roles from localStorage
+            const isAdmin = localStorage.getItem('isadmin'); // Assumes 'Y' or 'N'
+
+            // Function to show/hide elements based on their class name
+            function showHideElementsByClass(className, shouldShow) {
+                const elements = document.querySelectorAll(`.${className}`);
+                elements.forEach(item => {
+                    item.style.display = shouldShow ? 'block' : 'none';
+                });
+            }
+
+            // Hide all items initially
+            showHideElementsByClass('admin-item', false);
+            showHideElementsByClass('staff-item', false);
+
+            // Show items based on roles
+            if (isAdmin == 'Y') {
+                showHideElementsByClass('admin-item', true);
+            }
+
+            if (isAdmin == 'N') {
+                showHideElementsByClass('staff-item', true);
+            }
+        });
 </script>
 
 </body>

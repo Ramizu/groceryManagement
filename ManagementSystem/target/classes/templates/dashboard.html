@@ -17,6 +17,7 @@
         localStorage.setItem('uid', users.uid);
         localStorage.setItem('email', users.email);
         localStorage.setItem('phone', users.phone_num);
+        localStorage.setItem('isadmin', users.is_admin);
       }
     }
     console.log(localStorage.getItem('uid'));
@@ -256,7 +257,7 @@
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-              <h6 th:value="${userDTO.user_name}"></h6>
+              <h6 class="username"></h6>
               <span>Web Designer</span>
             </li>
             <li>
@@ -320,7 +321,7 @@
         </a>
       </li><!-- End Dashboard Nav -->
 
-      <li class="nav-item">
+      <li class="nav-item admin-item">
         <a class="nav-link collapsed" href="/products">
           <i class="bi bi-grid"></i>
           <span>Product</span>
@@ -527,19 +528,20 @@
 <!--        </a>-->
 <!--      </li>&lt;!&ndash; End Register Page Nav &ndash;&gt;-->
 
-      <li class="nav-item">
+      <li class="nav-item admin-item">
         <a class="nav-link collapsed" href="user">
           <i class="bi bi-card-list"></i>
           <span>Users</span>
         </a>
       </li><!-- End Staff Page Nav -->
 
-      <li class="nav-item">
+      <li class="nav-item admin-item" >
         <a class="nav-link collapsed" href="/sales-admin">
           <i class="bi bi-person"></i>
           <span>Sales Admin</span>
         </a>
       </li>
+
 
 <!--      <li class="nav-item">-->
 <!--        <a class="nav-link collapsed" href="/login">-->
@@ -1245,16 +1247,43 @@
   <script>
     var usernameElement = document.getElementById('username');
     username = localStorage.getItem('username');
-    console.log(username);
+    var userbyname = document.getElementsByClassName('username');
     if (username) {
     // Update the content of the HTML element
         usernameElement.textContent = username;
+        userbyname.textContent = username;
     } else {
         // If no value is found in localStorage, you can set a default value or handle it appropriately
         usernameElement.textContent = 'Guest';
     }
   </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+            // Retrieve the roles from localStorage
+            const isAdmin = localStorage.getItem('isadmin'); // Assumes 'Y' or 'N'
 
+            // Function to show/hide elements based on their class name
+            function showHideElementsByClass(className, shouldShow) {
+                const elements = document.querySelectorAll(`.${className}`);
+                elements.forEach(item => {
+                    item.style.display = shouldShow ? 'block' : 'none';
+                });
+            }
+
+            // Hide all items initially
+            showHideElementsByClass('admin-item', false);
+            showHideElementsByClass('staff-item', false);
+
+            // Show items based on roles
+            if (isAdmin == 'Y') {
+                showHideElementsByClass('admin-item', true);
+            }
+
+            if (isAdmin == 'N') {
+                showHideElementsByClass('staff-item', true);
+            }
+        });
+  </script>
 </body>
 
 </html>

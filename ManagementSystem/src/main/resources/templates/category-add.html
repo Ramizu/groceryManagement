@@ -231,7 +231,7 @@
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <h6 th:value="${userDTO.user_name}"></h6>
+                        <h6 class="username"></h6>
                         <span>Web Designer</span>
                     </li>
                     <li>
@@ -433,13 +433,43 @@
 <script src="/assets/js/main.js"></script>
 <script>
     var usernameElement = document.getElementById('username');
+    username = localStorage.getItem('username');
+    var userbyname = document.getElementsByClassName('username');
     if (username) {
     // Update the content of the HTML element
         usernameElement.textContent = username;
+        userbyname.textContent = username;
     } else {
         // If no value is found in localStorage, you can set a default value or handle it appropriately
         usernameElement.textContent = 'Guest';
     }
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+            // Retrieve the roles from localStorage
+            const isAdmin = localStorage.getItem('isadmin'); // Assumes 'Y' or 'N'
+
+            // Function to show/hide elements based on their class name
+            function showHideElementsByClass(className, shouldShow) {
+                const elements = document.querySelectorAll(`.${className}`);
+                elements.forEach(item => {
+                    item.style.display = shouldShow ? 'block' : 'none';
+                });
+            }
+
+            // Hide all items initially
+            showHideElementsByClass('admin-item', false);
+            showHideElementsByClass('staff-item', false);
+
+            // Show items based on roles
+            if (isAdmin == 'Y') {
+                showHideElementsByClass('admin-item', true);
+            }
+
+            if (isAdmin == 'N') {
+                showHideElementsByClass('staff-item', true);
+            }
+        });
 </script>
 
 </body>

@@ -495,12 +495,19 @@
 <!--        </a>-->
 <!--      </li>&lt;!&ndash; End Register Page Nav &ndash;&gt;-->
 
-      <li class="nav-item">
+      <li class="nav-item admin-item">
         <a class="nav-link collapsed" href="user">
           <i class="bi bi-card-list"></i>
           <span>Users</span>
         </a>
       </li><!-- End Staff Page Nav -->
+
+      <li class="nav-item staff-item">
+        <a class="nav-link collapsed" href="/sales-product">
+          <i class="bi bi-person"></i>
+          <span>Sales Staff</span>
+        </a>
+      </li>
 
 <!--      <li class="nav-item">-->
 <!--        <a class="nav-link collapsed" href="pages-login.html">-->
@@ -548,7 +555,7 @@
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
               <img src="/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-              <h2 th:text="${userDTO.user_name}"></h2>
+              <h2 class="username"></h2>
               <h3>Web Designer</h3>
               <div class="social-links mt-2">
                 <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
@@ -787,13 +794,43 @@
   <script src="/assets/js/main.js"></script>
   <script>
     var usernameElement = document.getElementById('username');
+    username = localStorage.getItem('username');
+    var userbyname = document.getElementsByClassName('username');
     if (username) {
     // Update the content of the HTML element
         usernameElement.textContent = username;
+        userbyname.textContent = username;
     } else {
         // If no value is found in localStorage, you can set a default value or handle it appropriately
         usernameElement.textContent = 'Guest';
     }
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+            // Retrieve the roles from localStorage
+            const isAdmin = localStorage.getItem('isadmin'); // Assumes 'Y' or 'N'
+
+            // Function to show/hide elements based on their class name
+            function showHideElementsByClass(className, shouldShow) {
+                const elements = document.querySelectorAll(`.${className}`);
+                elements.forEach(item => {
+                    item.style.display = shouldShow ? 'block' : 'none';
+                });
+            }
+
+            // Hide all items initially
+            showHideElementsByClass('admin-item', false);
+            showHideElementsByClass('staff-item', false);
+
+            // Show items based on roles
+            if (isAdmin == 'Y') {
+                showHideElementsByClass('admin-item', true);
+            }
+
+            if (isAdmin == 'N') {
+                showHideElementsByClass('staff-item', true);
+            }
+        });
   </script>
 
 </body>
