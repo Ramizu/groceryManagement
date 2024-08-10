@@ -15,6 +15,17 @@
                 // Redirect to the login page
                 window.location.href = '/'; // Adjust the URL as needed
             }
+        function navigateToProfile(event) {
+            event.preventDefault(); // Prevent the default link behavior
+            var id = localStorage.getItem('uid');
+            if (id) {
+                // Redirect to the Spring Boot method with query parameter
+                window.location.href = '/users-profile?userValue=' + encodeURIComponent(id);
+            } else {
+                // If no value in localStorage, navigate normally
+                window.location.href = '/users-profile';
+            }
+        }
     </script>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -231,7 +242,7 @@
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <h6 th:value="${userDTO.user_name}"></h6>
+                        <h6 class="username"></h6>
                         <span>Web Designer</span>
                     </li>
                     <li>
@@ -298,7 +309,7 @@
         <li class="nav-heading">Pages</li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="users-profile.html">
+            <a class="nav-link collapsed" href="users-profile.html" onclick="navigateToProfile(event)">
                 <i class="bi bi-person"></i>
                 <span>Profile</span>
             </a>
