@@ -591,7 +591,7 @@
                                 <input type="text" class="form-control" id="availability" th:field="${product.availability}" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="newAvailability">New Quantity</label>
+                                <label for="newAvailability">Sales Quantity</label>
                                 <input type="number" class="form-control" id="newAvailability" name="newAvailability" min="1" max="${product.availability}" required>
                             </div>
                             <!--                            <input type="text" class="form-control" id="created_date" th:field="${product.created_date}" hidden>-->
@@ -659,9 +659,12 @@
 </script>
 <script>
     var usernameElement = document.getElementById('username');
+    username = localStorage.getItem('username');
+    var userbyname = document.getElementsByClassName('username');
     if (username) {
     // Update the content of the HTML element
         usernameElement.textContent = username;
+        userbyname.textContent = username;
     } else {
         // If no value is found in localStorage, you can set a default value or handle it appropriately
         usernameElement.textContent = 'Guest';

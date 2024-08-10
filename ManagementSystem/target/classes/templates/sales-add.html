@@ -707,9 +707,12 @@
 </script>
 <script>
     var usernameElement = document.getElementById('username');
+    username = localStorage.getItem('username');
+    var userbyname = document.getElementsByClassName('username');
     if (username) {
     // Update the content of the HTML element
         usernameElement.textContent = username;
+        userbyname.textContent = username;
     } else {
         // If no value is found in localStorage, you can set a default value or handle it appropriately
         usernameElement.textContent = 'Guest';
