@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
-    <script th:inline="javascript">
+    <script>
         if(!localStorage.getItem('uid')){
-        window.location.href = 'http://localhost:8181/';
+            window.location.href = 'http://localhost:8181/';
         }
         var username = localStorage.getItem('username');
         console.log(username);
         function logout() {
-            // Clear all items from localStorage
-            localStorage.clear();
+                // Clear all items from localStorage
+                localStorage.clear();
 
-            // Redirect to the login page
-            window.location.href = '/'; // Adjust the URL as needed
-        }
+                // Redirect to the login page
+                window.location.href = '/'; // Adjust the URL as needed
+            }
     </script>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Add Product - Grocery Management System</title>
+    <title>Products - Grocery Management System</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -60,17 +60,17 @@
     <div class="d-flex align-items-center justify-content-between">
         <a href="/dashboard" class="logo d-flex align-items-center">
             <img src="/assets/img/logo.png" alt="">
-            <span class="d-none d-lg-block">Grocery System</span>
+            <span class="d-none d-lg-block">GroceryManagement</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
-<!--    <div class="search-bar">-->
-<!--        <form class="search-form d-flex align-items-center" method="POST" action="#">-->
-<!--            <input type="text" name="query" placeholder="Search" title="Enter search keyword">-->
-<!--            <button type="submit" title="Search"><i class="bi bi-search"></i></button>-->
-<!--        </form>-->
-<!--    </div>&lt;!&ndash; End Search Bar &ndash;&gt;-->
+    <div class="search-bar">
+        <form class="search-form d-flex align-items-center" method="POST" action="#">
+            <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+            <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+        </form>
+    </div><!-- End Search Bar -->
 
     <nav class="header-nav ms-auto">
         <ul class="d-flex align-items-center">
@@ -295,198 +295,31 @@
             </a>
         </li><!-- End Dashboard Nav -->
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="products.html">
-                <i class="bi bi-layout-text-window-reverse"></i>
-                <span>Products</span>
-            </a>
-        </li><!-- End Products Nav -->
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-menu-button-wide"></i><span>Components</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="components-alerts.html">
-                        <i class="bi bi-circle"></i><span>Alerts</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-accordion.html">
-                        <i class="bi bi-circle"></i><span>Accordion</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-badges.html">
-                        <i class="bi bi-circle"></i><span>Badges</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-breadcrumbs.html">
-                        <i class="bi bi-circle"></i><span>Breadcrumbs</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-buttons.html">
-                        <i class="bi bi-circle"></i><span>Buttons</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-cards.html">
-                        <i class="bi bi-circle"></i><span>Cards</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-carousel.html">
-                        <i class="bi bi-circle"></i><span>Carousel</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-list-group.html">
-                        <i class="bi bi-circle"></i><span>List group</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-modal.html">
-                        <i class="bi bi-circle"></i><span>Modal</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-tabs.html">
-                        <i class="bi bi-circle"></i><span>Tabs</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-pagination.html">
-                        <i class="bi bi-circle"></i><span>Pagination</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-progress.html">
-                        <i class="bi bi-circle"></i><span>Progress</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-spinners.html">
-                        <i class="bi bi-circle"></i><span>Spinners</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="components-tooltips.html">
-                        <i class="bi bi-circle"></i><span>Tooltips</span>
-                    </a>
-                </li>
-            </ul>
-        </li><!-- End Components Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-journal-text"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="forms-elements.html">
-                        <i class="bi bi-circle"></i><span>Form Elements</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="forms-layouts.html" class="active">
-                        <i class="bi bi-circle"></i><span>Form Layouts</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="forms-editors.html">
-                        <i class="bi bi-circle"></i><span>Form Editors</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="forms-validation.html">
-                        <i class="bi bi-circle"></i><span>Form Validation</span>
-                    </a>
-                </li>
-            </ul>
-        </li><!-- End Forms Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="tables-general.html">
-                        <i class="bi bi-circle"></i><span>General Tables</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="tables-data.html">
-                        <i class="bi bi-circle"></i><span>Data Tables</span>
-                    </a>
-                </li>
-            </ul>
-        </li><!-- End Tables Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-bar-chart"></i><span>Charts</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="charts-chartjs.html">
-                        <i class="bi bi-circle"></i><span>Chart.js</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="charts-apexcharts.html">
-                        <i class="bi bi-circle"></i><span>ApexCharts</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="charts-echarts.html">
-                        <i class="bi bi-circle"></i><span>ECharts</span>
-                    </a>
-                </li>
-            </ul>
-        </li><!-- End Charts Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-gem"></i><span>Icons</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="icons-bootstrap.html">
-                        <i class="bi bi-circle"></i><span>Bootstrap Icons</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="icons-remix.html">
-                        <i class="bi bi-circle"></i><span>Remix Icons</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="icons-boxicons.html">
-                        <i class="bi bi-circle"></i><span>Boxicons</span>
-                    </a>
-                </li>
-            </ul>
-        </li><!-- End Icons Nav -->
 
         <li class="nav-heading">Pages</li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="users-profile.html">
+            <a class="nav-link collapsed" href="users-profile">
                 <i class="bi bi-person"></i>
                 <span>Profile</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <a class="nav-link" href="/user">
-                <i class="bi bi-layout-text-window-reverse"></i>
-                <span>Users</span>
+            <a class="nav-link collapsed" href="/products">
+                <i class="bi bi-person"></i>
+                <span>Product</span>
             </a>
-        </li><!-- End Profile Page Nav -->
+        </li>
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="/category">
+                <i class="bi bi-person"></i>
+                <span>Category</span>
+            </a>
+        </li>
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="pages-faq.html">
@@ -537,68 +370,94 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Edit User</h1>
+        <h1>Products</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-                <li class="breadcrumb-item"><a href="products.html">Products</a></li>
-                <li class="breadcrumb-item active">Edit User</li>
+                <li class="breadcrumb-item active">Products</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
+
+
+    <div class="alert alert-success alert-dismissible fade show" id="success-alert" role="alert" style="display: none">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <div class="alert alert-danger alert-dismissible fade show" id="danger-alert" role="alert" style="display: none">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
     <section class="section">
         <div class="row">
-
             <div class="col-lg-12">
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Edit User Details</h5>
 
-                        <!-- Vertical Form -->
-                        <form class="row g-3" method="post" enctype="multipart/form-data" th:object="${userDTO}">
-                            <div class="col-12">
-                                <label for="inputNanme4" class="form-label">User Name</label>
-                                <input type="text" class="form-control" id="inputNanme4" th:field="${userDTO.user_name}">
-                                <p th:if="${#fields.hasErrors('user_name')}" th:errorclass="text-danger"
-                                   th:errors="${userDTO.user_name}"></p>
-                            </div>
-                            <div class="col-12">
-                                <label for="inputEmail4" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="inputEmail4" th:field="${userDTO.email}">
-                                <p th:if="${#fields.hasErrors('email')}" th:errorclass="text-danger"
-                                   th:errors="${userDTO.email}"></p>
-                            </div>
-                            <div class="col-12">
-                                <label for="inputPhone4" class="form-label">Phone Number</label>
-                                <input type="tel" class="form-control" id="inputPhone4" th:field="${userDTO.phone_num}">
-                            </div>
-                            <div class="col-12">
-                                <label class="col-sm-2 col-form-label">Role</label>
-                                <div class="col-sm-12">
-                                    <select class="form-select" id="inputRole" th:field="${userDTO.is_admin}">
-                                        <option value="" disabled selected>Select role</option>
-                                        <option value="Y">Admin</option>
-                                        <option value="N">Staff</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <label for="inputPhone4" class="form-label">Created At</label>
-                                <input readonly class="form-control-plaintext" id="createdate" th:value="${user.crt_dt_ts}">
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary">Add</button>
-                                <button type="reset" class="btn btn-secondary">Reset</button>
-                                <a class="btn btn-outline-primary" href="/user" role="button">Cancel</a>
-                            </div>
-                        </form><!-- Vertical Form -->
+                        <!--                        <div class="d-flex align-items-center" style="justify-content: space-between">-->
+                        <!--                            <h5 class="card-title">Product List</h5>-->
+                        <!--                            <button type="button" class="btn btn-primary mb-2">-->
+                        <!--                                <a href="/product-add" style="color: white">-->
+                        <!--                                    <i class="bi bi-plus"></i> Add Product-->
+                        <!--                                </a>-->
+                        <!--                            </button>-->
+                        <!--                        </div>-->
+
+                        <!-- Table with stripped rows -->
+                        <table class="table table-striped datatable" style="vertical-align: middle">
+                            <thead>
+                            <tr>
+                                <th scope="col">No.</th>
+                                <th scope="col">Product Name</th>
+                                <th scope="col">Price (RM)</th>
+                                <th scope="col">Availability</th>
+                                <th scope="col">Created Date</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="product, iterStat : ${products}">
+                                <th th:text="${iterStat.index + 1}" scope="row"></th>
+                                <td th:text="${product.prod_name}"></td>
+                                <td th:text="${product.prod_price}"></td>
+                                <td th:text="${product.availability}"></td>
+                                <td th:text="${#dates.format(product.created_date, 'yyyy-MM-dd')}"></td>
+                                <td style="white-space:nowrap">
+                                    <a th:href="@{/sales-product/updateProduct(prodId=${product.prod_ID})}" class="btn btn-primary">Sell</a>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!-- End Table with stripped rows -->
 
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
+
+    <script th:inline="javascript">
+        window.onload = function() {
+            var msg = "${message}";
+            if (msg == "Successfully saved!" || msg == "Successfully edited!" || msg == "Successfully deleted!") {
+                document.getElementById("success-alert").style.display = "block";
+                document.getElementById("success-alert").innerHTML = msg;
+                document.getElementById("danger-alert").style.display = "none";
+            }
+            else if (msg == "Failed to save!" || msg == "Failed to edit!" || msg == "Failed to delete!") {
+                document.getElementById("success-alert").style.display = "none";
+                document.getElementById("danger-alert").style.display = "block";
+                document.getElementById("danger-alert").innerHTML = msg;
+            }
+            else {
+                document.getElementById("success-alert").style.display = "none";
+                document.getElementById("danger-alert").style.display = "none";
+            }
+        }
+    </script>
 
 </main><!-- End #main -->
 

@@ -83,7 +83,7 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-        <a href=/dashboard class="logo d-flex align-items-center">
+        <a href=/dashboard-staff class="logo d-flex align-items-center">
             <img src="/assets/img/logo.png" alt="">
             <span class="d-none d-lg-block">Grocery System</span>
         </a>
@@ -256,7 +256,7 @@
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <h6>Kevin Anderson</h6>
+                        <h6 th:value="${userDTO.user_name}"></h6>
                         <span>Web Designer</span>
                     </li>
                     <li>
@@ -314,14 +314,14 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link " href=/dashboard>
+            <a class="nav-link " href="/dashboard-staff">
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
             </a>
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
-            <a class="nav-link " href=/products>
+            <a class="nav-link " href="/products">
                 <i class="bi bi-grid"></i>
                 <span>Product</span>
             </a>
@@ -565,7 +565,7 @@
         <h1>Dashboard</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href=/dashboard>Home</a></li>
+                <li class="breadcrumb-item"><a href="/dashboard-staff">Home</a></li>
                 <li class="breadcrumb-item active">Dashboard</li>
             </ol>
         </nav>
@@ -1235,6 +1235,16 @@
 
 <!-- Template Main JS File -->
 <script src="/assets/js/main.js"></script>
+<script>
+    var usernameElement = document.getElementById('username');
+    if (username) {
+    // Update the content of the HTML element
+        usernameElement.textContent = username;
+    } else {
+        // If no value is found in localStorage, you can set a default value or handle it appropriately
+        usernameElement.textContent = 'Guest';
+    }
+</script>
 
 </body>
 

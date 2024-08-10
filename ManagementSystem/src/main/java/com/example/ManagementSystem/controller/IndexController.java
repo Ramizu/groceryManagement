@@ -57,6 +57,11 @@ public class IndexController {
         return "dashboard";
     }
 
+    @GetMapping("/dashboard-staff")
+    public String dashboardStaff(){
+        return "dashboard-staff";
+    }
+
     @GetMapping({"/users-profile", "/users-profile.html"})
     public String userProfile(@RequestParam(name = "userValue", required = false) String uid,Model model, @RequestParam(required = false) String id){
 

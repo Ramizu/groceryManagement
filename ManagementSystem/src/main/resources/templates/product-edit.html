@@ -58,7 +58,7 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-        <a href="/index" class="logo d-flex align-items-center">
+        <a href="/dashboard" class="logo d-flex align-items-center">
             <img src="/assets/img/logo.png" alt="">
             <span class="d-none d-lg-block">Grocery System</span>
         </a>
@@ -231,7 +231,7 @@
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <h6>Kevin Anderson</h6>
+                        <h6 th:value="${userDTO.user_name}"></h6>
                         <span>Web Designer</span>
                     </li>
                     <li>
@@ -269,7 +269,7 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
+                        <a class="dropdown-item d-flex align-items-center"  href="/" onclick="logout()">
                             <i class="bi bi-box-arrow-right"></i>
                             <span>Sign Out</span>
                         </a>
@@ -567,11 +567,11 @@
                         <h5 class="card-title">Edit Product Details</h5>
 
                         <!-- Vertical Form -->
-                        <form class="row g-3" method="post" th:object="${product}" action="/updateProduct">
-                            <input th:field="${product.prod_ID}" type="hidden"/>
+                        <form class="row g-3" method="post" th:object="${productDTO}" action="/updateProduct">
+                            <input id="prod_ID" th:field="${product.prod_ID}" type="hidden"/>
                             <div class="col-12">
                                 <label for="prod_name" class="form-label">Product Name</label>
-                                <input type="text" class="form-control" id="prod_name" th:field="${product.prod_name}" required="required">
+                                <input type="text" class="form-control" id="prod_name" th:value="${product.prod_name}" th:field="${product.prod_name}" required="required">
                             </div>
                             <div class="col-12">
                                 <label for="prod_price" class="form-label">Price (RM)</label>
@@ -585,15 +585,12 @@
                                 <label class="col-sm-2 col-form-label">Category</label>
                                 <div class="col-sm-12">
                                     <select class="form-select" id="category_ID" th:field="${product.category_ID}">
-                                        <option value="" selected >Select Category</option>
-                                        <option value="1">Food</option>
-                                        <option value="2">Beverage</option>
-                                        <option value="3">Electronic</option>
+                                        <option th:each="category: ${categories}" th:value="${category.category_id}" th:text="${category.category_name}"></option>
                                     </select>
                                 </div>
                             </div>
                             <div class="text-center">
-<!--                                <a th:href="@{/updateProduct(prod_ID=${product.prod_ID})}" style="color:white" class="btn btn-primary">Update</a>-->
+                                <!--                                <a th:href="@{/updateProduct(prod_ID=${product.prod_ID})}" style="color:white" class="btn btn-primary">Update</a>-->
                                 <button type="submit" class="btn btn-primary">Update</button>
                                 <button type="reset" class="btn btn-secondary">Reset</button>
                             </div>
@@ -638,13 +635,13 @@
 
 <script th:inline="javascript">
     window.onload = function() {
-        var msg = "${message}";
-        if (msg == "Successfully saved!" || msg == "Successfully edited!" || msg == "Successfully deleted!") {
+        var msg = [[${message}]];
+        if (msg == "Successfully saved!" || msg == "Successfully updated!" || msg == "Successfully deleted!") {
             document.getElementById("success-alert").style = "display: block";
             document.getElementById("success-alert").innerHTML = msg;
             document.getElementById("danger-alert").style = "display: none";
         }
-        else if (msg == "Failed to save!" || msg == "Failed to edit!" || msg == "Failed to delete!") {
+        else if (msg == "Failed to save!" || msg == "Failed to update!" || msg == "Failed to delete!") {
             document.getElementById("success-alert").style = "display: none";
             document.getElementById("danger-alert").style = "display: block";
             document.getElementById("danger-alert").innerHTML = msg;
@@ -653,6 +650,16 @@
             document.getElementById("success-alert").style = "display: none";
             document.getElementById("danger-alert").style = "display: none";
         }
+    }
+</script>
+<script>
+    var usernameElement = document.getElementById('username');
+    if (username) {
+    // Update the content of the HTML element
+        usernameElement.textContent = username;
+    } else {
+        // If no value is found in localStorage, you can set a default value or handle it appropriately
+        usernameElement.textContent = 'Guest';
     }
 </script>
 

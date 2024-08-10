@@ -231,7 +231,7 @@
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <h6>Kevin Anderson</h6>
+                        <h6 th:value="${userDTO.user_name}"></h6>
                         <span>Web Designer</span>
                     </li>
                     <li>
@@ -269,7 +269,7 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
+                        <a class="dropdown-item d-flex align-items-center"  href="/" onclick="logout()">
                             <i class="bi bi-box-arrow-right"></i>
                             <span>Sign Out</span>
                         </a>
@@ -578,6 +578,7 @@
                                 <th scope="col">No.</th>
                                 <th scope="col">Product Name</th>
                                 <th scope="col">Price (RM)</th>
+                                <th scope="col">Category</th>
                                 <th scope="col">Availability</th>
                                 <th scope="col">Created Date</th>
                                 <th scope="col">Action</th>
@@ -585,14 +586,15 @@
                             </thead>
                             <tbody>
                             <tr th:each="product : ${products}">
-                                <th th:text="${productStat.count}" scope="row">1</th>
+                                <th th:text="${productStat.count}" scope="row"></th>
                                 <td th:text="${product.prod_name}"></td>
-                                <td th:text="${product.prod_price}"></td>
+                                <td id="price" th:text="${product.prod_price}"></td>
+                                <td th:text="${product.category.category_name}"></td>
                                 <td th:text="${product.availability}"></td>
                                 <td th:text="${product.created_date}"></td>
                                 <td>
                                     <a th:href="@{/product-edit(prod_ID=${product.prod_ID})}" style="color:white" class="btn btn-secondary"><i class="bi bi-pencil-square"></i></a>
-                                    <button type="button" class="btn btn-danger"><a th:href="@{/deleteProduct(prod_ID=${product.prod_ID})}" style="color:white"><i class="bi bi-trash"></i></a></button>
+                                    <a th:href="@{/deleteProduct(prod_ID=${product.prod_ID})}" style="color:white" class="btn btn-danger" onclick="return confirm('Are you sure to delete this product?')"><i class="bi bi-trash"></i></a>
                                 </td>
                             </tr>
                             </tbody>
@@ -656,6 +658,16 @@
 
 <!-- Template Main JS File -->
 <script src="/assets/js/main.js"></script>
+<script>
+    var usernameElement = document.getElementById('username');
+    if (username) {
+    // Update the content of the HTML element
+        usernameElement.textContent = username;
+    } else {
+        // If no value is found in localStorage, you can set a default value or handle it appropriately
+        usernameElement.textContent = 'Guest';
+    }
+</script>
 
 </body>
 

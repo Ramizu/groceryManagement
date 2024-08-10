@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
-    <script th:inline="javascript">
+    <script>
         if(!localStorage.getItem('uid')){
-        window.location.href = 'http://localhost:8181/';
+            window.location.href = 'http://localhost:8181/';
         }
         var username = localStorage.getItem('username');
         console.log(username);
         function logout() {
-            // Clear all items from localStorage
-            localStorage.clear();
+                // Clear all items from localStorage
+                localStorage.clear();
 
-            // Redirect to the login page
-            window.location.href = '/'; // Adjust the URL as needed
-        }
+                // Redirect to the login page
+                window.location.href = '/'; // Adjust the URL as needed
+            }
     </script>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Add Product - Grocery Management System</title>
+    <title>Category - Grocery Management System</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -60,17 +60,17 @@
     <div class="d-flex align-items-center justify-content-between">
         <a href="/dashboard" class="logo d-flex align-items-center">
             <img src="/assets/img/logo.png" alt="">
-            <span class="d-none d-lg-block">Grocery System</span>
+            <span class="d-none d-lg-block">GroceryAdmin</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
-<!--    <div class="search-bar">-->
-<!--        <form class="search-form d-flex align-items-center" method="POST" action="#">-->
-<!--            <input type="text" name="query" placeholder="Search" title="Enter search keyword">-->
-<!--            <button type="submit" title="Search"><i class="bi bi-search"></i></button>-->
-<!--        </form>-->
-<!--    </div>&lt;!&ndash; End Search Bar &ndash;&gt;-->
+    <div class="search-bar">
+        <form class="search-form d-flex align-items-center" method="POST" action="#">
+            <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+            <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+        </form>
+    </div><!-- End Search Bar -->
 
     <nav class="header-nav ms-auto">
         <ul class="d-flex align-items-center">
@@ -296,11 +296,17 @@
         </li><!-- End Dashboard Nav -->
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="products.html">
-                <i class="bi bi-layout-text-window-reverse"></i>
+            <a class="nav-link collapsed"href="products.html">
+                <i class="bi bi-grid"></i>
                 <span>Products</span>
             </a>
         </li><!-- End Products Nav -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="category">
+                <i class="bi bi-grid"></i>
+                <span>Category</span>
+            </a>
+        </li>
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
@@ -391,7 +397,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="forms-layouts.html" class="active">
+                    <a href="forms-layouts.html">
                         <i class="bi bi-circle"></i><span>Form Layouts</span>
                     </a>
                 </li>
@@ -482,13 +488,6 @@
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <a class="nav-link" href="/user">
-                <i class="bi bi-layout-text-window-reverse"></i>
-                <span>Users</span>
-            </a>
-        </li><!-- End Profile Page Nav -->
-
-        <li class="nav-item">
             <a class="nav-link collapsed" href="pages-faq.html">
                 <i class="bi bi-question-circle"></i>
                 <span>F.A.Q</span>
@@ -537,65 +536,75 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Edit User</h1>
+        <h1>Categories</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-                <li class="breadcrumb-item"><a href="products.html">Products</a></li>
-                <li class="breadcrumb-item active">Edit User</li>
+                <li class="breadcrumb-item active">Categories</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
+
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert" style="display: block">
+        A simple success alert—check it out!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" style="display: none">
+        A simple danger alert—check it out!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
     <section class="section">
         <div class="row">
-
             <div class="col-lg-12">
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Edit User Details</h5>
 
-                        <!-- Vertical Form -->
-                        <form class="row g-3" method="post" enctype="multipart/form-data" th:object="${userDTO}">
-                            <div class="col-12">
-                                <label for="inputNanme4" class="form-label">User Name</label>
-                                <input type="text" class="form-control" id="inputNanme4" th:field="${userDTO.user_name}">
-                                <p th:if="${#fields.hasErrors('user_name')}" th:errorclass="text-danger"
-                                   th:errors="${userDTO.user_name}"></p>
-                            </div>
-                            <div class="col-12">
-                                <label for="inputEmail4" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="inputEmail4" th:field="${userDTO.email}">
-                                <p th:if="${#fields.hasErrors('email')}" th:errorclass="text-danger"
-                                   th:errors="${userDTO.email}"></p>
-                            </div>
-                            <div class="col-12">
-                                <label for="inputPhone4" class="form-label">Phone Number</label>
-                                <input type="tel" class="form-control" id="inputPhone4" th:field="${userDTO.phone_num}">
-                            </div>
-                            <div class="col-12">
-                                <label class="col-sm-2 col-form-label">Role</label>
-                                <div class="col-sm-12">
-                                    <select class="form-select" id="inputRole" th:field="${userDTO.is_admin}">
-                                        <option value="" disabled selected>Select role</option>
-                                        <option value="Y">Admin</option>
-                                        <option value="N">Staff</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <label for="inputPhone4" class="form-label">Created At</label>
-                                <input readonly class="form-control-plaintext" id="createdate" th:value="${user.crt_dt_ts}">
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary">Add</button>
-                                <button type="reset" class="btn btn-secondary">Reset</button>
-                                <a class="btn btn-outline-primary" href="/user" role="button">Cancel</a>
-                            </div>
-                        </form><!-- Vertical Form -->
+                        <div class="d-flex align-items-center" style="justify-content: space-between">
+                            <h5 class="card-title">Category List</h5>
+                            <button type="button" class="btn btn-primary mb-2">
+                                <a href="/category/addCategory" style="color: white">
+                                    <i class="bi bi-plus"></i> Add Category
+                                </a>
+                            </button>
+                        </div>
+
+                        <!-- Table with stripped rows -->
+                        <table class="table table-striped datatable" style="vertical-align: middle">
+                            <thead>
+                            <tr>
+                                <th scope="col">No.</th>
+                                <th scope="col">Category Name</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Creation Date</th>
+                                <th scope="col">Action</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="category : ${categories}">
+                                <th th:text = "${categoryStat.count}" scope="row">1</th>
+                                <td th:text = "${category.category_name}"></td>
+                                <td th:text = "${category.category_desc}"></td>
+                                <td th:text = "${category.crt_dt_ts.toString().substring(0, 10)}"></td>
+                                <td style="white-space:nowrap">
+                                    <a class="btn btn-secondary bi bi-pencil-square"
+                                       th:href="@{/category/updateCategory (id=${category.categoryid})}"></a>
+                                    <a class="btn btn-danger bi bi-trash"
+                                       th:href="@{/category/deleteCategory (id=${category.categoryid})}"
+                                       onclick="return confirm('Are you sure?')"></a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!-- End Table with stripped rows -->
 
                     </div>
                 </div>
+
             </div>
         </div>
     </section>

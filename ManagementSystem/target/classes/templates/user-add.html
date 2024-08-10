@@ -2,6 +2,20 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
+    <script th:inline="javascript">
+        if(!localStorage.getItem('uid')){
+        window.location.href = 'http://localhost:8181/';
+        }
+        var username = localStorage.getItem('username');
+        console.log(username);
+        function logout() {
+            // Clear all items from localStorage
+            localStorage.clear();
+
+            // Redirect to the login page
+            window.location.href = '/'; // Adjust the URL as needed
+        }
+    </script>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -46,7 +60,7 @@
     <div class="d-flex align-items-center justify-content-between">
         <a href="/dashboard" class="logo d-flex align-items-center">
             <img src="/assets/img/logo.png" alt="">
-            <span class="d-none d-lg-block">NiceAdmin</span>
+            <span class="d-none d-lg-block">Grocery System</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -217,7 +231,7 @@
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <h6>Kevin Anderson</h6>
+                        <h6 th:value="${userDTO.user_name}"></h6>
                         <span>Web Designer</span>
                     </li>
                     <li>
@@ -255,7 +269,7 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
+                        <a class="dropdown-item d-flex align-items-center"  href="/" onclick="logout()">
                             <i class="bi bi-box-arrow-right"></i>
                             <span>Sign Out</span>
                         </a>
@@ -618,6 +632,16 @@
 
 <!-- Template Main JS File -->
 <script src="/assets/js/main.js"></script>
+<script>
+    var usernameElement = document.getElementById('username');
+    if (username) {
+    // Update the content of the HTML element
+        usernameElement.textContent = username;
+    } else {
+        // If no value is found in localStorage, you can set a default value or handle it appropriately
+        usernameElement.textContent = 'Guest';
+    }
+</script>
 
 </body>
 
